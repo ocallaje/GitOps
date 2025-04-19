@@ -1,1 +1,2 @@
 charts/**/charts
+charts/root-app/templates/argo-cd.yaml
