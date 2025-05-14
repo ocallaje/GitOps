@@ -16,7 +16,5 @@ argo-cd:
       - name: https
         port: 443
         nodePort: 30443
-    extraArgs:
-      - --insecure
   redisSecretInit:
     enabled: false
