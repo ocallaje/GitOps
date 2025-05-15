@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ocallaje/gitops.git
+    repoURL: https://github.com/ocallaje/GitOps.git
     path: namespaces
     targetRevision: HEAD
   destination:
