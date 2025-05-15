@@ -1,17 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nest-api
+  name: root-app
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/ocallaje/GitOps.git
-    path: deployments/nest-api/
+    repoURL: https://github.com/ocallaje/gitops.git
+    path: apps/dev-cluster
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: nest
+    namespace: argocd
   syncPolicy:
     automated:
       selfHeal: true

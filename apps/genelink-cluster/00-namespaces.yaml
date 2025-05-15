@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: namespaces
   namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/ocallaje/gitops.git
-    path: charts/argo-cd
+    repoURL: https://github.com/ocallaje/GitOps.git
+    path: namespaces/genelink-cluster
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: argocd 
   syncPolicy:
     automated:
       selfHeal: true
