@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-pause
+  namespace: nest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-pause
+  template:
+    metadata:
+      labels:
+        app: test-pause
+    spec:
+      containers:
+      - name: pause
+        image: k8s.gcr.io/pause:3.8
+        resources: {}
