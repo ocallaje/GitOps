@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ocallaje/GitOps.git
-    path: deployments/dev-cluster/nest-api/
+    path: deployments/dev-cluster/nest-api
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
