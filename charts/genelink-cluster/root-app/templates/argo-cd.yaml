@@ -10,6 +10,12 @@ spec:
   source:
     repoURL: https://github.com/ocallaje/gitops.git
     path: charts/genelink-cluster/argo-cd
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: fullnameOverride
+          value: argocd
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
