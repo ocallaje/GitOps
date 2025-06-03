@@ -11,9 +11,15 @@ spec:
     path: charts/argo-workflows
     helm:
       values: |
-        controller:
+        workflow:
           serviceAccount:
             create: true
+            name: "argo-workflow"
+          rbac:
+            create: true
+        controller:
+          workflowNamespaces:
+            - nextflow
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-workflows      # workflows namespace
