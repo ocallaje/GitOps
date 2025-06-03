@@ -20,6 +20,13 @@ spec:
         controller:
           workflowNamespaces:
             - nextflow
+        server:
+          enabled: true
+          service:
+            type: NodePort
+            nodePort: 31500
+          ingress:
+            enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-workflows      # workflows namespace
