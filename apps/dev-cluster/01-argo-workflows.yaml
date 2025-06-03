@@ -23,7 +23,8 @@ spec:
         server:
           enabled: true
           serviceType: NodePort   
-          serviceNodePort: 31500        
+          serviceNodePort: 31500
+          authModes: [server]        
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-workflows      # workflows namespace
