@@ -9,6 +9,9 @@ spec:
     matchLabels:
       app: seqworks
   template:
+    metadata:
+      labels:
+        app: seqworks
     spec:
       serviceAccountName: seqworks-argo-trigger
       containers:
