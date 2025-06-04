@@ -17,6 +17,7 @@ spec:
       containers:
       - name: seqworks
         image: alpine:latest
+        command: ["sleep", "3600"]
         volumeMounts:
             - name: token
               mountPath: /var/run/secrets/kubernetes.io/serviceaccount
