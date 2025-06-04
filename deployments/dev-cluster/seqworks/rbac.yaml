@@ -27,11 +27,3 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: seqworks-argo-trigger
----  
-apiVersion: v1
-kind: Secret
-metadata:
-  name: seqworks-argo-trigger-token
-  annotations:
-    kubernetes.io/service-account.name: seqworks-argo-trigger
-type: kubernetes.io/service-account-token
