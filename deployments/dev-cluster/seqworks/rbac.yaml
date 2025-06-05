@@ -43,9 +43,9 @@ metadata:
   name: nextflow-submitter-role
   namespace: nextflow
 rules:
-  - apiGroups: ["argoproj.io"]
-    resources: ["workflows", "workflowtemplates", "workflowtaskresults"]
-    verbs: ["get", "list", "create", "watch", "patch"]
+  - apiGroups: ["argoproj.io", "batch"]
+    resources: ["workflows", "workflowtemplates", "workflowtaskresults", "jobs"]
+    verbs: ["get", "list", "create", "watch", "patch", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
