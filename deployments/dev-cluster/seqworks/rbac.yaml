@@ -46,6 +46,9 @@ rules:
   - apiGroups: ["argoproj.io", "batch"]
     resources: ["workflows", "workflowtemplates", "workflowtaskresults", "jobs"]
     verbs: ["get", "list", "create", "watch", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods", "pods/log", "pods/status", "persistentvolumeclaims", "services", "configmaps"]
+    verbs: ["get", "list", "watch", "create", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
