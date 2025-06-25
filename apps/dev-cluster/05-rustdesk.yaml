@@ -1,0 +1,30 @@
+# adapted from the following docker images
+# jeff@atticdev:~$ docker ps
+# CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS        PORTS                                                                                                                                                                       NAMES
+# db17d13de2da   rustdesk/rustdesk-server   "hbbr"                   2 weeks ago   Up 19 hours   0.0.0.0:21117->21117/tcp, [::]:21117->21117/tcp, 0.0.0.0:21119->21119/tcp, [::]:21119->21119/tcp                                                                            hbbr
+# 4678ab96873c   rustdesk/rustdesk-server   "hbbs -r springadome…"   2 weeks ago   Up 19 hours   0.0.0.0:21115-21116->21115-21116/tcp, [::]:21115-21116->21115-21116/tcp, 0.0.0.0:21118->21118/tcp, [::]:21118->21118/tcp, 0.0.0.0:21116->21116/udp, [::]:21116->21116/udp   hbbs
+# jeff@atticdev:~$ docker inspect --format '{{.Path}} {{range .Args}}{{.}} {{end}}' 4678ab96873c
+# hbbs -r springadome.duckdns.org:21117
+
+# rustdesk clients target ports 80 and 443, originally routed on router to 21117 and 21116 respectively
+# with an additional 443 UDP > 21116
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rustdesk
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ocallaje/GitOps.git
+    path: deployments/dev-cluster/rustdesk
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rustdesk
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+

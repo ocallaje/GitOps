@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rustdesk-hbbs
+  namespace: rustdesk
+  labels:
+    app: rustdesk-hbbs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rustdesk-hbbs
+  template:
+    metadata:
+      labels:
+        app: rustdesk-hbbs
+    spec:
+      containers:
+      - name: hbbs
+        image: rustdesk/rustdesk-server
+        args: ["hbbs", "-r", "rustdesk.springadome.duckdns.org:21117"]  # Adjust the relay hostname as needed
+        ports:
+        - containerPort: 21115
+        - containerPort: 21118
+        - containerPort: 21116
+          protocol: TCP
+        - containerPort: 21116
+          protocol: UDP
+
+        
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rustdesk-hbbs
+  namespace: rustdesk
+spec:
+  type: ClusterIP  # Or NodePort, depending on your cluster setup
+  selector:
+    app: rustdesk-hbbs
+  ports:
+    - name: tcp-21115
+      port: 21115
+      targetPort: 21115
+      protocol: TCP
+    - name: tcp-21116
+      port: 21116
+      targetPort: 21116
+      protocol: TCP
+    - name: udp-21116
+      port: 21116
+      targetPort: 21116
+      protocol: UDP
+    - name: tcp-21118
+      port: 21118
+      targetPort: 21118
+      protocol: TCP
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: rustdesk-hbbs
+  namespace: rustdesk
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostSNI(`rustdesk.springadome.duckdns.org`)
+      services:
+        - name: rustdesk-hbbs
+          port: 21116
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: rustdesk-hbbs
+  namespace: rustdesk
+spec:
+  entryPoints:
+    - rustdeskudp
+  services:
+    - name: rustdesk-hbbs
+      port: 21116

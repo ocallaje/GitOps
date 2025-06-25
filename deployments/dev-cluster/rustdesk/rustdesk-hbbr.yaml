@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rustdesk-hbbr
+  namespace: rustdesk
+  labels:
+    app: rustdesk-hbbr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rustdesk-hbbr
+  template:
+    metadata:
+      labels:
+        app: rustdesk-hbbr
+    spec:
+      containers:
+      - name: hbbr
+        image: rustdesk/rustdesk-server
+        args: ["hbbr"]
+        ports:
+        - containerPort: 21117
+        - containerPort: 21119
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rustdesk-hbbr
+  namespace: rustdesk
+spec:
+  type: ClusterIP
+  selector:
+    app: rustdesk-hbbr
+  ports:
+    - name: tcp-21117
+      port: 21117
+      targetPort: 21117
+      protocol: TCP
+    - name: tcp-21119
+      port: 21119
+      targetPort: 21119
+      protocol: TCP
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: rustdesk-hbbr
+  namespace: rustdesk
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: HostSNI(`rustdesk.springadome.duckdns.org`)
+      services:
+        - name: rustdesk-hbbr
+          port: 21117
