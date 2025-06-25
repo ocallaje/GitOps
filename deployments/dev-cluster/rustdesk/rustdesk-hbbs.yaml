@@ -82,6 +82,6 @@ spec:
   entryPoints:
     - rustdeskudp
   routes:
-    services:
-      - name: rustdesk-hbbs
-        port: 21116
+    - services:
+        - name: rustdesk-hbbs
+          port: 21116
