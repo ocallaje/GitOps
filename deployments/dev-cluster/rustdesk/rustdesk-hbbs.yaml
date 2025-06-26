@@ -26,8 +26,28 @@ spec:
           protocol: TCP
         - containerPort: 21116
           protocol: UDP
+        volumeMounts:
+        - name: rustdesk-config
+          mountPath: /root/
+      volumes:
+      - name: rustdesk-config
+        persistentVolumeClaim:
+          claimName: rustdesk-pvc
 
         
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rustdesk-pvc
+  namespace: rustdesk
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
 
 ---
 apiVersion: v1
