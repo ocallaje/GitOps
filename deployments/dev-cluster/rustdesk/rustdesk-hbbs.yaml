@@ -18,7 +18,7 @@ spec:
       containers:
       - name: hbbs
         image: rustdesk/rustdesk-server
-        args: ["hbbs", "-r", "rustdesk.springadome.duckdns.org:21117"]  # Adjust the relay hostname as needed
+        args: ["hbbs", "-r", "rustdeskrelay.springadome.duckdns.org:443"]  # Adjust the relay hostname as needed
         ports:
         - containerPort: 21115
         - containerPort: 21118
