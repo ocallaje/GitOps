@@ -51,9 +51,9 @@ metadata:
   namespace: rustdesk
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
-    - match: HostSNI(`rustdesk.springadome.duckdns.org`)
+    - match: HostSNI(`rustdeskrelay.springadome.duckdns.org`)
       services:
         - name: rustdesk-hbbr
           port: 21117
