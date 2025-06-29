@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak
+  namespace: argocd
+spec:
+  destination:
+    namespace: keycloak
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: keycloak
+      targetRevision: 26.2.5
+    - repoURL: https://github.com/ocallaje/GitOps.git
+      targetRevision: main
+      ref: values
+  helm:
+    valueFiles:
+      - values://deployments/dev-cluster/keycloak/values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

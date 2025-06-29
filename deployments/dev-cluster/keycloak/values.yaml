@@ -1,0 +1,15 @@
+auth:
+  adminUser: admin
+  adminPassword: admin123
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: keycloakpg123
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
+ingress:
+  enabled: true
+  hostname: keycloak.springadome.duckdns.org
+  ingressClassName: traefik
