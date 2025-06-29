@@ -3,8 +3,6 @@ auth:
   adminPassword: admin123
 postgresql:
   enabled: true
-  auth:
-    postgresPassword: keycloakpg123
   primary:
     persistence:
       enabled: true
