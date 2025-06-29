@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: keycloak
-      targetRevision: 26.2.5
+      targetRevision: 24.7.1
     - repoURL: https://github.com/ocallaje/GitOps.git
       targetRevision: main
       ref: values
