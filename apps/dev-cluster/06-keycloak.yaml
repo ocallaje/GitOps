@@ -11,12 +11,13 @@ spec:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: keycloak
       targetRevision: 24.7.1
+      helm:
+        valueFiles:
+          - $values/deployments/dev-cluster/keycloak/values.yaml
     - repoURL: https://github.com/ocallaje/GitOps.git
       targetRevision: main
       ref: values
-  helm:
-    valueFiles:
-      - values://deployments/dev-cluster/keycloak/values.yaml
+
   project: default
   syncPolicy:
     automated:
