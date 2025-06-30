@@ -1,12 +1,6 @@
 auth:
   adminUser: admin
-  adminPassword: admin123
-postgresql:
-  enabled: true
-  primary:
-    persistence:
-      enabled: true
-      size: 8Gi
+  adminPassword: admin132
 ingress:
   enabled: true
   hostname: keycloak.springadome.duckdns.org
