@@ -5,9 +5,6 @@ postgresql:
   enabled: true
   auth:
     username: bn_keycloak
-    existingSecret: keycloak-postgresql
-    secretKeys:
-      userPasswordKey: postgres-password
     database: bitnami_keycloak
 ingress:
   enabled: true
