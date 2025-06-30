@@ -5,7 +5,7 @@ postgresql:
   enabled: true
   auth:
     username: bn_keycloak
-    password: bn_keycloak
+    password: nztdql3mDa
     database: bitnami_keycloak
 ingress:
   enabled: true
