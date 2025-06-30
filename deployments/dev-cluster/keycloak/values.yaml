@@ -1,6 +1,12 @@
 auth:
   adminUser: admin
   adminPassword: admin132
+postgresql:
+  enabled: true
+  auth:
+    username: bn_keycloak
+    password: bn_keycloak
+    database: bitnami_keycloak
 ingress:
   enabled: true
   hostname: keycloak.springadome.duckdns.org
