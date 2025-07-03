@@ -62,5 +62,5 @@ spec:
   dnsNames:
     - traefik.springadome.duckdns.org
   issuerRef:
-    kind: Issuer
+    kind: ClusterIssuer
     name: letsencrypt-prod
