@@ -23,16 +23,16 @@ service:
 ## Ingress configuration
 ##
 ingress:
-  enabled: true
-  hostname: keycloak.springadome.duckdns.org
-  ingressClassName: traefik
-  path: /
-  pathType: Prefix
-  servicePort: http
+  enabled: false
+  #hostname: keycloak.springadome.duckdns.org
+  #ingressClassName: traefik
+  #path: /
+  #pathType: Prefix
+  #servicePort: http
 
-  tls: true
-  selfSigned: false  # unless you're testing
+  #tls: true
+  #selfSigned: false  # unless you're testing
 
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    cert-manager.io/cluster-issuer: letsencrypt-prod  # or staging for test
+  #annotations:
+  #  kubernetes.io/ingress.class: traefik
+  #  cert-manager.io/cluster-issuer: letsencrypt-prod  # or staging for test
