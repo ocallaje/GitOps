@@ -49,3 +49,18 @@ spec:
       services:
         - name: nginx
           port: 80
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: nginx
+spec:
+  commonName: traefik.springadome.duckdns.org
+  secretName: nginx-cert
+  dnsNames:
+    - traefik.springadome.duckdns.org
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt-prod
