@@ -65,8 +65,7 @@ spec:
     solvers:
     - http01:
         ingress:
-          serviceType: ClusterIP
-          class: traefik
+          ingressClassName: traefik
 
 ---
 apiVersion: cert-manager.io/v1
