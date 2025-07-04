@@ -67,3 +67,7 @@ spec:
             name: nginx
             port:
               number: 80
+status:
+  loadbalancer:
+    ingress:
+      ip: 192.168.1.39
