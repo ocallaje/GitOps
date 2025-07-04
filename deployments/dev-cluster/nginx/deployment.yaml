@@ -61,7 +61,7 @@ metadata:
     # Use cert-manager for TLS
     #cert-manager.io/cluster-issuer: letsencrypt-prod
     # Optional: use staging for testing
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     
     # Traefik annotations
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
