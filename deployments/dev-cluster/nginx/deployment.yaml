@@ -30,25 +30,9 @@ metadata:
 spec:
   ports:
     - port: 80
-      protocol: TCP
+      targetPort: 80
   selector:
     app: nginx
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: nginx
-  namespace: nginx
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`traefik.springadome.duckdns.org`)
-      kind: Rule
-      services:
-        - name: nginx
-          port: 80
 
 
 ---
@@ -80,8 +64,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     
     # Traefik annotations
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+    #traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    #traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   ingressClassName: traefik
   tls:
